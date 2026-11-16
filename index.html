@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Legado Natural - Hipertrofia 55kg a 65kg+</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --card-bg: #121212;
+            --card-border: #222222;
+            --emerald: #10b981;
+            --emerald-dark: #059669;
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding-bottom: 90px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid var(--card-border);
+            background: #050505;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .profile-pic {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--card-border);
+            border: 2px solid var(--emerald);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        h1 {
+            font-size: 1.1rem;
+            color: var(--emerald);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+        .subtitle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .container {
+            padding: 16px;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .water-card {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .water-progress {
+            background: var(--card-border);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .water-fill {
+            background: var(--emerald);
+            height: 100%;
+            width: 70%;
+            transition: width 0.3s;
+        }
+        .btn {
+            background-color: var(--emerald);
+            color: #000;
+            font-weight: 700;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--emerald);
+            color: var(--emerald);
+        }
+        .exercise-item {
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+        }
+        .equipment-box {
+            background: #080808;
+            border-left: 3px solid var(--emerald);
+            padding: 8px 12px;
+            margin: 8px 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-radius: 0 6px 6px 0;
+        }
+        .input-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        input[type="number"] {
+            background: #000;
+            border: 1px solid var(--card-border);
+            color: #fff;
+            padding: 10px;
+            border-radius: 6px;
+            flex: 1;
+            font-size: 1rem;
+        }
+        nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #050505;
+            border-top: 1px solid var(--card-border);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            max-width: 480px;
+            margin: 0 auto;
+            z-index: 100;
+        }
+        .nav-item {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+        .nav-item.active {
+            color: var(--emerald);
+        }
+        .timer-modal {
+            position: fixed;
+            bottom: 80px;
+            left: 16px;
+            right: 16px;
+            background: #18181b;
+            border: 2px solid var(--emerald);
+            padding: 16px;
+            border-radius: 12px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 200;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <div class="profile-pic" onclick="alert('Maikon, perfil carregado!')">
+                <span style="font-size: 1.2rem;">💪</span>
+            </div>
+            <div>
+                <h1>LEGADO NATURAL</h1>
+                <div class="subtitle">55kg ➔ 65kg+ | ULPPL</div>
+            </div>
+        </div>
+        <button class="btn btn-outline" style="width: auto; padding: 6px 12px; font-size: 0.8rem;">🟢 Offline</button>
+    </header>
+
+    <div class="container">
+        <!-- ÁGUA -->
+        <div class="card water-card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong>💧 Hidratação Diária</strong>
+                <span id="water-text" style="color: var(--emerald); font-weight: bold;">2.1L / 3.0L</span>
+            </div>
+            <div class="water-progress">
+                <div class="water-fill" id="water-bar" style="width: 70%;"></div>
+            </div>
+            <button class="btn btn-outline" onclick="addWater()">+ 300ml de Água</button>
+        </div>
+
+        <!-- TREINO -->
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h3 style="color: var(--emerald);">🔥 Treino de Hoje: Upper 1</h3>
+                <button class="btn btn-outline" style="width: auto; padding: 4px 8px; font-size: 0.75rem;">🔄 ULPPL</button>
+            </div>
+
+            <!-- Exercício 1 -->
+            <div class="exercise-item">
+                <strong>1. Supino Reto com Barra</strong>
+                <div class="equipment-box">📸 Equipamento: Banco plano com suporte fixo para barra olímpica.</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">Meta: 3x 6-8 reps | Carga anterior: 18kg/lado</div>
+                <div class="input-group">
+                    <input type="number" placeholder="Carga (kg)">
+                    <button class="btn" onclick="concluirSerie()">Concluir</button>
+                </div>
+            </div>
+
+            <!-- Exercício 2 -->
+            <div class="exercise-item" style="margin-top: 16px;">
+                <strong>2. Puxada Alta na Polia</strong>
+                <div class="equipment-box">📸 Equipamento: Torre de polia alta com barra curva acoplada.</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">Meta: 3x 8-10 reps | Carga anterior: 40kg</div>
+                <div class="input-group">
+                    <input type="number" placeholder="Carga (kg)">
+                    <button class="btn" onclick="concluirSerie()">Concluir</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- NUTRIÇÃO & PESO -->
+        <div class="card">
+            <h3 style="color: var(--emerald); margin-bottom: 8px;">⚖️ Evolução de Peso</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Atual: 56.2 kg (+1.2kg ganhos rumo aos 65kg)</p>
+            <button class="btn btn-outline" onclick="alert('IA de Nutrição: Calorias em alta! Priorize arroz, frango, ovos e azeite.')">🤖 Auditoria Nutricional IA</button>
+        </div>
+    </div>
+
+    <!-- TEMPORIZADOR 60s -->
+    <div class="timer-modal" id="timerModal">
+        <div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">⏱️ Descanso Automático</div>
+            <div id="timerCount" style="font-size: 1.4rem; font-weight: bold; color: var(--emerald);">60s</div>
+        </div>
+        <button class="btn btn-outline" style="width: auto; padding: 6px 12px;" onclick="fecharTimer()">Pular</button>
+    </div>
+
+    <nav>
+        <button class="nav-item active"><span>🔥</span>Treino</button>
+        <button class="nav-item" onclick="alert('Área de Nutrição')"><span>🍎</span>Dieta</button>
+        <button class="nav-item" onclick="alert('Progresso de Cargas')"><span>📈</span>Evolução</button>
+        <button class="nav-item" onclick="alert('Definições do Perfil')"><span>👤</span>Perfil</button>
+    </nav>
+
+    <script>
+        let timerInterval;
+        function concluirSerie() {
+            const modal = document.getElementById('timerModal');
+            modal.style.display = 'flex';
+            let segundos = 60;
+            document.getElementById('timerCount').innerText = segundos + 's';
+            
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                segundos--;
+                document.getElementById('timerCount').innerText = segundos + 's';
+                if(segundos <= 0) {
+                    clearInterval(timerInterval);
+                    modal.style.display = 'none';
+                }
+            }, 1000);
+        }
+        function fecharTimer() {
+            clearInterval(timerInterval);
+            document.getElementById('timerModal').style.display = 'none';
+        }
+        let agua = 2.1;
+        function addWater() {
+            agua = Math.min(3.0, agua + 0.3);
+            document.getElementById('water-text').innerText = agua.toFixed(1) + 'L / 3.0L';
+            document.getElementById('water-bar').style.width = (agua / 3.0 * 100) + '%';
+        }
+    </script>
+</body>
+</html>
